@@ -8,32 +8,42 @@ class SwitchAndCheckBoxTestRoute extends StatefulWidget {
   _SwitchAndCheckBoxTestRouteState createState() => new _SwitchAndCheckBoxTestRouteState();
 }
 
-class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute> {
-  bool _switchSelected=true; //维护单选开关状态
-  bool _checkboxSelected=true;//维护复选框状态
+class _SwitchAndCheckBoxTestRoute extends State<SwitchAndCheckBoxTestRoute>{
+  bool _switchSelected = true; //维护单选开关状态
+  bool _checkboxSelected = true; //维护复选开关状态
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Switch(
-          value: _switchSelected,//当前状态
-          onChanged:(value){
-            //重新构建页面  
-            setState(() {
-              _switchSelected=value;
-            });
-          },
-        ),
-        Checkbox(
-          value: _checkboxSelected,
-          activeColor: Colors.red, //选中时的颜色
-          onChanged:(value){
-            setState(() {
-              _checkboxSelected=value;
-            });
-          } ,
-        )
-      ],
+    // TODO: implement build
+    return new Scaffold(
+      appBar: new AppBar(
+
+        title: new Text('checkbox和switch'),
+      ),
+
+      body: new Column(
+        children: <Widget>[
+          new Switch(
+              value: _switchSelected,
+              onChanged: (value){
+                //重新构建页面
+                setState(() {
+                  _switchSelected = value;
+                });
+              }
+          ),
+
+          new Checkbox(
+              value: _checkboxSelected,
+              activeColor: Colors.red,//选中时的颜色
+              onChanged: (value){
+                setState(() {
+                  _checkboxSelected = value;
+                });
+              }
+          )
+        ],
+      ),
     );
   }
 }
@@ -41,7 +51,7 @@ class _SwitchAndCheckBoxTestRouteState extends State<SwitchAndCheckBoxTestRoute>
 
 
 
-上面代码中，由于需要维护`Switch`和`Checkbox`的选中状态，所以`SwitchAndCheckBoxTestRoute`继承自`StatefulWidget` 。在其`build`方法中分别构建了一个`Switch`和`Checkbox`，初始状态都为选中状态，当用户点击时，会将状态置反，然后回调用`setState()`通知Flutter framework重新构建UI。
+上面代码中，由于需要维护`Switch`和`Checkbox`的选中状态，所以`SwitchAndCheckBoxTestRoute`继承自`StatefulWidget` 。在其`build`方法中分别构建了一个`Switch`和`Checkbox`，初始状态都为选中状态，当用户点击时，会将状态置反，然后回调用`setState()`通知Flutter framework重新构建UI。请记住：使用material风格控件的时候在build方法中根Widget要使用Scaffold作为根控件，否则会报：No Material widget found Switch widgets require a Material widget ancestor等系列错误
 
 ![图3-23](../imgs/3-23.png)
 
